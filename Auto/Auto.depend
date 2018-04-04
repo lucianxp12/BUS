@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1522856477 source:c:\users\lucia\desktop\bus\auto\bus.cpp
+	"Bus.h"
+
+1522856477 c:\users\lucia\desktop\bus\auto\bus.h
+
+1522870801 source:c:\users\lucia\desktop\bus\auto\main.cpp
+	<iostream>
+	"Lista.h"
+
+1522870399 c:\users\lucia\desktop\bus\auto\lista.h
+
+1522870800 source:c:\users\lucia\desktop\bus\auto\lista.cpp
+	<iostream>
+	<string>
+	<string.h>
+	"Lista.h"
+
+1522870167 c:\users\lucia\desktop\bus\auto\functii.h
+	<iostream>
+	<string>
+	<string.h>
+
