@@ -1,16 +1,20 @@
 # depslib dependency file v1.0
-1522856477 source:c:\users\lucia\desktop\bus\auto\bus.cpp
+1524083543 source:c:\users\lucia\desktop\bus\auto\bus.cpp
+	<iostream>
+	<string>
+	<string.h>
 	"Bus.h"
 
-1522856477 c:\users\lucia\desktop\bus\auto\bus.h
+1524083564 c:\users\lucia\desktop\bus\auto\bus.h
 
-1522870801 source:c:\users\lucia\desktop\bus\auto\main.cpp
+1524083619 source:c:\users\lucia\desktop\bus\auto\main.cpp
 	<iostream>
 	"Lista.h"
+	"Bus.h"
 
-1522870399 c:\users\lucia\desktop\bus\auto\lista.h
+1524081235 c:\users\lucia\desktop\bus\auto\lista.h
 
-1522870800 source:c:\users\lucia\desktop\bus\auto\lista.cpp
+1524081653 source:c:\users\lucia\desktop\bus\auto\lista.cpp
 	<iostream>
 	<string>
 	<string.h>
@@ -20,4 +24,40 @@
 	<iostream>
 	<string>
 	<string.h>
+
+1524689315 source:e:\bus\auto\lista.cpp
+	<iostream>
+	<string>
+	<string.h>
+	"Lista.h"
+
+1524688969 e:\bus\auto\lista.h
+	<iostream>
+
+1524689829 source:e:\bus\auto\main.cpp
+	<iostream>
+	"Lista.h"
+	"Bus.h"
+	"Functii.h"
+	<fstream>
+	<string.h>
+	<stdlib.h>
+
+1524689679 e:\bus\auto\bus.h
+	<iostream>
+
+1524689714 source:e:\bus\auto\bus.cpp
+	<iostream>
+	<string>
+	<string.h>
+	"Bus.h"
+
+1524689928 e:\bus\auto\functii.h
+	<iostream>
+	<string>
+	<string.h>
+	<random>
+	<ctime>
+	<fstream>
+	<stdlib.h>
 

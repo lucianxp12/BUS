@@ -1,12 +1,16 @@
 #ifndef LISTA_H
 #define LISTA_H
 
+#include <iostream>
+
+using namespace std;
 
 struct nod
 {
     char data[100];
+    char pass[100];
+    bool logged = false;
     nod *next;
-    nod *prev;
 };
 
 class Lista
@@ -14,24 +18,35 @@ class Lista
     private:
         nod *inceput, *sfarsit;
     public:
+        //chestii pt clasa
         Lista();
         ~Lista();
+        friend ostream &operator<<(ostream &, const Lista &);
 
-        void addLaSpate(char* );
+        //chestii pt lista simplu inlantuita
+        void addLaSpate(char* =NULL, char* =NULL);
         void afisare();
 
-        void addLaFata(char*  );
+        void addLaFata(char* =NULL, char* =NULL);
 
-        void addLaPoz(int , char* );
+        void addLaPoz(int , char* =NULL, char* =NULL);
 
 
         void stergeInceput();
 
-        void stergeSpate();
-        void stergePozitie();
+        //chestii de cautare
 
-        bool Search(char*);
+        bool Search(char* ="Inexistent", char* ="Inexistent");
+        bool SearchUser(char* ="Inexistent");
+        bool SearchInterior(char* a);
 
+
+
+        //alte tooluri
+
+        void setUserLogat(char* =NULL);
+        char* getNumeUserLogatos() const;
+        void getNumeUserLogat() const;
 
 };
 

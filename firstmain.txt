@@ -1,0 +1,17 @@
+Lista op;
+    op.addLaSpate("Salutare");
+    op.addLaSpate("Buna");
+    op.addLaFata("Hei !","Shumudica");
+    op.addLaPoz(400,"Nu vreau", "Shumudica");
+    op.addLaPoz(1,"Nu vreau");
+
+    //op.stergeInceput();
+    op.afisare();
+    cout<<endl;
+
+    //op.Search("Salutare");
+
+    //char c[200]="    Cev aaaa       ";
+    //cout<<taieSpatiiSiMareste(c);
+
+    cout<<endl;
