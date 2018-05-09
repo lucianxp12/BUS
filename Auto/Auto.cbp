@@ -37,6 +37,8 @@
 		<Unit filename="Functii.h" />
 		<Unit filename="Lista.cpp" />
 		<Unit filename="Lista.h" />
+		<Unit filename="UserLogged.cpp" />
+		<Unit filename="UserLogged.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

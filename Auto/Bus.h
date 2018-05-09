@@ -9,6 +9,9 @@ struct node
 {
     char info[100];
     int timp;
+    int timpm;
+    bool suntAiciDus;
+    bool suntAiciIntors;
     node *next;
     node *prev;
 };
@@ -28,17 +31,20 @@ class Bus
         ~Bus();
 
 //----- necesare modelare
-        const char* getNume();
+        char* getNume();
         char* getSofer();
-        void setTime(int =0, int =0);
+        void setTime(int =0, int =0 , int =0);
         int getNrStatiiCuren() const;
-
+        void setSuntAiciIntors(int =0);
+        void setSuntAiciDus(int =0);
 
 
 //------pt lista dubla
         void addLaSpate(char* =NULL,int =0);
         void afisare();// afisare pt Admin
         void afisarePtUser();
+        void afisareDus();
+        void afisareIntors();
 
         void addLaFata(char* =NULL, int =0);
 

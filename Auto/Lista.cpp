@@ -28,7 +28,7 @@ Lista::~Lista()
 
 }
 
-void Lista::addLaSpate(char* v,char* p)
+void Lista::addLaSpate(char* v,char* p, char*fav)
 {
     nod *aux = new nod;
 
@@ -45,6 +45,9 @@ void Lista::addLaSpate(char* v,char* p)
             strcpy(aux->pass,p);
         else strcpy(aux->pass,"Inexistent");
 
+        if(p != NULL)
+            strcpy(aux->fav,fav);
+        else strcpy(aux->fav,"Inexistent");
         aux->next = NULL;
         if(inceput == NULL)//daca nu avem niciun nod in lista
         {
@@ -69,7 +72,10 @@ void Lista::afisare()
     aux = inceput;
     while(aux != NULL)
     {
-        cout<<"User:"<<aux->data<<" | Pass:"<<aux->pass<<endl;
+        cout<<"User:"<<aux->data<<" | Pass:"<<aux->pass<<" ";
+        if(aux->logged == true) cout<<"Logged";
+        else {cout<<"NOT Logged"; }
+        cout<<endl;
         aux = aux->next;
     }
 }
@@ -193,9 +199,11 @@ bool Lista::SearchUser(char* a)
         if( strcmp(a,aux->data) == 0 )
         {
             ok = true;
+            if (strcmp(a ,"Admin") == 0) aux->adminRights = true;
         }
         aux = aux->next;
     }
+
 
     return ok;
 }
@@ -252,24 +260,98 @@ void Lista::setUserLogat(char* a)
 }
 
 
-char* Lista::getNumeUserLogatos() const //Erriareeeeeeeeeeeee
+char* Lista::getNumeUserLogatos() const
 {
     bool ok = false;
     nod *aux = new nod;
     char p[200];
-    //strcpy(p,taieSpatiiSiMareste(a));
+
     aux = inceput;
 
     while( (ok==false) && (aux!=NULL) )
     {
-        if( aux->logged == true )
+        if( aux->logged )
         {
             ok = true;
-
+            return aux->data;
 
         }
         aux = aux->next;
     }
+
+    return "NU";
+
+
+}
+
+char* Lista::getPassUserLogatos() const
+{
+    bool ok = false;
+    nod *aux = new nod;
+    char p[200];
+
+    aux = inceput;
+
+    while( (ok==false) && (aux!=NULL) )
+    {
+        if( aux->logged )
+        {
+            ok = true;
+            return aux->pass;
+
+        }
+        aux = aux->next;
+    }
+
+    return "NU";
+
+
+}
+
+char* Lista::getFavUserLogatos() const
+{
+    bool ok = false;
+    nod *aux = new nod;
+    char p[200];
+
+    aux = inceput;
+
+    while( (ok==false) && (aux!=NULL) )
+    {
+        if( aux->logged )
+        {
+            ok = true;
+            return aux->fav;
+
+        }
+        aux = aux->next;
+    }
+
+    return "NU";
+
+
+}
+
+bool Lista::getAdminRight() const
+{
+    bool ok = false;
+    nod *aux = new nod;
+    char p[200];
+
+    aux = inceput;
+
+    while( (ok==false) && (aux!=NULL) )
+    {
+        if( aux->logged )
+        {
+            ok = true;
+            return aux->adminRights;
+
+        }
+        aux = aux->next;
+    }
+
+
 
 
 }
@@ -295,6 +377,28 @@ void Lista::getNumeUserLogat() const
     }
 
     cout<<aux->data;
+}
+
+struct nod& Lista::getUserNow()
+{
+    bool ok = false;
+    nod *aux = new nod;
+    char p[200];
+    //strcpy(p,taieSpatiiSiMareste(a));
+    aux = inceput;
+
+    while( (ok==false) && (aux!=NULL) )
+    {
+        if( aux->logged == true )
+        {
+            ok = true;
+
+
+        }
+        aux = aux->next;
+    }
+
+    return *aux;
 }
 
  ostream & operator<<(ostream & os,const Lista &c)

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
-
+#include "UserLogged.h"
 #define L 10
 
 using namespace std;
@@ -21,8 +21,10 @@ int nr;
 ifstream numarInitial("nr.txt");
 numarInitial>>nr;
 numarInitial.close();
-char* userLogged;
-    userLogged = new char[40];
+char* userLogged; userLogged = new char[40];
+char* userLoggedFav; userLoggedFav = new char[40];
+char* userLoggedPass; userLoggedPass = new char[40];
+bool userLoggedRight;
 
 
 //declaratie tablou de bussuri
@@ -46,6 +48,7 @@ char* userLogged;
     liniar(" ",L);cout<< "Trebuie sa ne logam !" <<endl;
     liniar(" ",L);cout<<"1. Sunt utilizator existent "<<endl;
     liniar(" ",L);cout<<"2. Vreau sa imi fac cont "<<endl;
+    liniar(" ",L);cout<<"3. Iesire "<<endl;
 
     do{
     if((alegere != 1) && (alegere != 2)){ liniar(" ",L);cout<< "Rasuns: "; cin>>alegere; }
@@ -53,27 +56,45 @@ char* userLogged;
     if(alegere == 1)
     {
             userLogged = loginUserExistent(a);
+            a.setUserLogat(userLogged);
+
     }
 
     else if(alegere == 2){userLogged = loginUserNou(a, nr);}
     else if(alegere == 0){ }
+    else if(alegere == 3){liniar(" ",L); cout<<"La revedere !!";}
         else{liniar(" ",L); cout<<"Te rugam sa alegi un raspuns valid"<<endl;}
 
-    }while ( (alegere != 1) && (alegere != 2) );
+    }while ( (alegere != 1) && (alegere != 2) && (alegere != 3));
 
-
-
+    if(alegere != 3)
+    {
 
     system("cls");
 
-    liniar(" ",L); liniar("-",L); cout<<"  Buna "<<userLogged<<" !";   liniar("-",L); cout<<endl;
+    cout<<"Ceva"<<endl;
+
+    a.afisare();cout<<a.getNumeUserLogatos();
+
+    cout<<"Ceva"<<endl;
+
+    UserLogged U(a);
+    U.afisare();
+    liniar(" ",L); liniar("-",L); cout<<"  Buna "<<U.getNume()<<" !";   liniar("-",L); cout<<endl;
     liniar(" ",Lf); cout<<"Ora ["<<getTimeHour()<<":"<<getTimeMin()<<"]"<<endl;
-    liniar(" ",Lf); cout<<"Autobuzul tau preferat este:"<<endl;
-    adaugareBussuriSiStatie(t);
+    liniar(" ",Lf); cout<<"Autobuzul tau preferat este: "<< U.getFav() <<endl;
+
+    int numarBusuri = 2;
+    adaugareBussGeneral(t,0,"E2.txt", "E2" , "Dorian CiMolan");
+    adaugareBussGeneral(t,1,"16.txt", "16", "Pardon Nisipescu");
+    char* fav;
+    fav = new char[strlen(U.getFav())+1];
+    strcpy(fav, U.getFav());
+    cautareDupaBus(t,1,fav);
 
     cout<<endl;
 
-
+    }
 
 
 

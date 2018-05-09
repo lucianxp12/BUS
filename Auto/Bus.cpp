@@ -88,12 +88,60 @@ void Bus::afisarePtUser()
     int h,m;
     while(aux != NULL)
     {
-        h = aux->timp/100;
-        m = aux->timp%100;
+
         cout<<"   "<<aux->info<<" ";
         for(int i = 0; i< 20 - strlen(aux->info); i++){cout<<"-";}
-        cout<<"["<< h <<":"<< m <<"]"<<endl;
+        cout<<"["<< aux->timp <<":"<< aux->timpm <<"]"<<endl;
+
         aux = aux->next;
+    }
+
+}
+
+void Bus::afisareDus()
+{
+    cout<<"  -------- BUSSUL: "<< this->numeBus <<" -------\n"<<endl;
+    cout<<" Statii DUS:" <<endl;
+    node *aux = new node;
+    aux = inceput;
+
+    int h,m;
+    while(aux != NULL)
+    {
+
+        cout<<"   "<<aux->info<<" ";
+        for(int i = 0; i< 20 - strlen(aux->info); i++){cout<<"-";}
+        cout<<"["<< aux->timp <<":"<< aux->timpm <<"]";
+
+        if(aux->suntAiciDus) {cout << " - [AICI]";}
+        cout<<endl;
+
+
+        aux = aux->next;
+    }
+
+}
+
+void Bus::afisareIntors()
+{
+    cout<<"  -------- BUSSUL: "<< this->numeBus <<" -------\n"<<endl;
+    cout<<" Statii INTORS:" <<endl;
+    node *aux = new node;
+    aux = sfarsit;
+
+    int h,m;
+    while(aux != NULL)
+    {
+
+        cout<<"   "<<aux->info<<" ";
+        for(int i = 0; i< 20 - strlen(aux->info); i++){cout<<"-";}
+        cout<<"["<< aux->timp <<":"<< aux->timpm <<"]";
+
+        if(aux->suntAiciIntors) {cout << " - [AICI]";}
+        cout<<endl;
+
+
+        aux = aux->prev;
     }
 
 }
@@ -176,7 +224,7 @@ bool Bus::searchBus(char *v)
 }
 
 
-void Bus::setTime(int t, int n) // t = timp de setat | n = al catelea nod sa fie setat
+void Bus::setTime(int t, int m ,int n ) // t = timp de setat | n = al catelea nod sa fie setat
 {
         bool ok = false;
         node *aux = new node;
@@ -191,8 +239,43 @@ void Bus::setTime(int t, int n) // t = timp de setat | n = al catelea nod sa fie
         }
 
         aux->timp = t;
+        aux->timpm = m;
 
 
+}
+
+void Bus::setSuntAiciDus(int p)
+{
+    bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+        int i = 0;
+
+
+        while( (aux!=NULL) && (i<p) )
+        {
+            aux = aux->next;
+            i++;
+        }
+
+        aux->suntAiciDus = true;
+}
+
+void Bus::setSuntAiciIntors(int p)
+{
+    bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+        int i = 0;
+
+
+        while( (aux!=NULL) && (i<p) )
+        {
+            aux = aux->next;
+            i++;
+        }
+
+        aux->suntAiciIntors = true;
 }
 
 int Bus::getNrStatiiCuren() const
@@ -200,7 +283,7 @@ int Bus::getNrStatiiCuren() const
     return this->nrStatiiCurent;
 }
 
-const char* Bus::getNume()
+char* Bus::getNume()
 {
     return this->numeBus;
 }
