@@ -25,34 +25,36 @@
 	<string>
 	<string.h>
 
-1524689315 source:e:\bus\auto\lista.cpp
+1525889701 source:e:\bus\auto\lista.cpp
 	<iostream>
 	<string>
 	<string.h>
 	"Lista.h"
 
-1524688969 e:\bus\auto\lista.h
+1526329847 e:\bus\auto\lista.h
 	<iostream>
 
-1524689829 source:e:\bus\auto\main.cpp
+1526553920 source:e:\bus\auto\main.cpp
 	<iostream>
 	"Lista.h"
 	"Bus.h"
+	"Arbore.h"
 	"Functii.h"
 	<fstream>
 	<string.h>
 	<stdlib.h>
+	"UserLogged.h"
 
-1524689679 e:\bus\auto\bus.h
+1526408034 e:\bus\auto\bus.h
 	<iostream>
 
-1524689714 source:e:\bus\auto\bus.cpp
+1526408022 source:e:\bus\auto\bus.cpp
 	<iostream>
 	<string>
 	<string.h>
 	"Bus.h"
 
-1524689928 e:\bus\auto\functii.h
+1526414341 e:\bus\auto\functii.h
 	<iostream>
 	<string>
 	<string.h>
@@ -61,13 +63,13 @@
 	<fstream>
 	<stdlib.h>
 
-1525904612 source:h:\bus\auto\bus.cpp
+1526408022 source:h:\bus\auto\bus.cpp
 	<iostream>
 	<string>
 	<string.h>
 	"Bus.h"
 
-1525904603 h:\bus\auto\bus.h
+1526408034 h:\bus\auto\bus.h
 	<iostream>
 
 1525889701 source:h:\bus\auto\lista.cpp
@@ -76,20 +78,21 @@
 	<string.h>
 	"Lista.h"
 
-1525889761 h:\bus\auto\lista.h
+1526329847 h:\bus\auto\lista.h
 	<iostream>
 
-1525906105 source:h:\bus\auto\main.cpp
+1526416316 source:h:\bus\auto\main.cpp
 	<iostream>
 	"Lista.h"
 	"Bus.h"
+	"Arbore.h"
 	"Functii.h"
 	<fstream>
 	<string.h>
 	<stdlib.h>
 	"UserLogged.h"
 
-1525905671 h:\bus\auto\functii.h
+1526414341 h:\bus\auto\functii.h
 	<iostream>
 	<string>
 	<string.h>
@@ -105,4 +108,82 @@
 
 1525888990 h:\bus\auto\userlogged.h
 	"Lista.h"
+
+1525889027 source:e:\bus\auto\userlogged.cpp
+	<iostream>
+	"UserLogged.h"
+	<string.h>
+
+1525888990 e:\bus\auto\userlogged.h
+	"Lista.h"
+
+1526416305 source:h:\bus\auto\arbore.cpp
+	"Arbore.h"
+
+1526415440 h:\bus\auto\arbore.h
+	<iostream>
+	<fstream>
+	<string>
+
+1526416305 source:e:\bus back-up 17.05.2018\bus\auto\arbore.cpp
+	"Arbore.h"
+
+1526415440 e:\bus back-up 17.05.2018\bus\auto\arbore.h
+	<iostream>
+	<fstream>
+	<string>
+
+1526408022 source:e:\bus back-up 17.05.2018\bus\auto\bus.cpp
+	<iostream>
+	<string>
+	<string.h>
+	"Bus.h"
+
+1526408034 e:\bus back-up 17.05.2018\bus\auto\bus.h
+	<iostream>
+
+1525889701 source:e:\bus back-up 17.05.2018\bus\auto\lista.cpp
+	<iostream>
+	<string>
+	<string.h>
+	"Lista.h"
+
+1526329847 e:\bus back-up 17.05.2018\bus\auto\lista.h
+	<iostream>
+
+1526416316 source:e:\bus back-up 17.05.2018\bus\auto\main.cpp
+	<iostream>
+	"Lista.h"
+	"Bus.h"
+	"Arbore.h"
+	"Functii.h"
+	<fstream>
+	<string.h>
+	<stdlib.h>
+	"UserLogged.h"
+
+1526414341 e:\bus back-up 17.05.2018\bus\auto\functii.h
+	<iostream>
+	<string>
+	<string.h>
+	<random>
+	<ctime>
+	<fstream>
+	<stdlib.h>
+
+1525888990 e:\bus back-up 17.05.2018\bus\auto\userlogged.h
+	"Lista.h"
+
+1525889027 source:e:\bus back-up 17.05.2018\bus\auto\userlogged.cpp
+	<iostream>
+	"UserLogged.h"
+	<string.h>
+
+1526551046 source:e:\bus\auto\arbore.cpp
+	"Arbore.h"
+
+1526415440 e:\bus\auto\arbore.h
+	<iostream>
+	<fstream>
+	<string>
 

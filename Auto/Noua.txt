@@ -1,0 +1,11 @@
+1 Banatul
+1 Transilvania
+2 Liviu Rebreanu
+2 Gheorghe Ranetti
+2 Constantin Brancoveanu
+1 Drubeta
+1 Salcamilor
+2 Calea Martirilor
+2 Spitalul Judetean
+2 Bulevardul Sudului
+1 AEM

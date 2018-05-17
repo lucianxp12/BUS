@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -32,6 +33,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Arbore.cpp" />
+		<Unit filename="Arbore.h" />
 		<Unit filename="Bus.cpp" />
 		<Unit filename="Bus.h" />
 		<Unit filename="Functii.h" />

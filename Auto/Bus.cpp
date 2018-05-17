@@ -5,6 +5,17 @@
 
 using namespace std;
 
+void liniarb(char *a, int n)
+{
+    if(a != NULL)
+    {
+        for(int i = 0; i < n; i++ )
+        {
+            cout<<a;
+        }
+    }
+}
+
 Bus::Bus(char* numeBus, char* numeSofer)
 {
     cout<<"--- Am creat un BUS ----"<<endl;
@@ -59,8 +70,8 @@ ostream& operator<<(ostream& os , const Bus& c)
 
 void Bus::afisare()
 {
-    cout<<"  -------- BUSSUL: "<< this->numeBus <<" -------\n"<<endl;
-    cout<<"  Sofer:" << this->numeSofer <<endl;
+    liniarb(" ", Lb);cout<<"  -------- "<< this->numeBus <<" -------\n"<<endl;
+    liniarb(" ", Lb);cout<<"  Sofer:" << this->numeSofer <<endl;
     cout<<" Statii:" <<endl;
     node *aux = new node;
     aux = inceput;
@@ -70,9 +81,21 @@ void Bus::afisare()
     {
         h = aux->timp/100;
         m = aux->timp%100;
-        cout<<"   "<<aux->info<<" ";
+        liniarb(" ", Lb);cout<<"   *"<<aux->info<<"* ";
         for(int i = 0; i< 20 - strlen(aux->info); i++){cout<<"-";}
-        cout<<"["<< h <<":"<< m <<"]"<<endl;
+        cout<<"[";
+            if(aux->timp<10){
+                cout<<"0"<<aux->timp;
+            }
+            else{cout<<aux->timp;}
+            cout<<":";
+
+            if(aux->timpm<10){
+                cout<<"0"<<aux->timpm;
+            }
+            else{cout<<aux->timpm;}
+            cout<<"]"<<endl;
+
         aux = aux->next;
     }
 
@@ -100,8 +123,8 @@ void Bus::afisarePtUser()
 
 void Bus::afisareDus()
 {
-    cout<<"  -------- BUSSUL: "<< this->numeBus <<" -------\n"<<endl;
-    cout<<" Statii DUS:" <<endl;
+    liniarb(" ",Lb);cout<<"  -------- "<< this->numeBus <<" -------\n"<<endl;
+    liniarb(" ",Lb);cout<<" Statii DUS:" <<endl;
     node *aux = new node;
     aux = inceput;
 
@@ -109,10 +132,22 @@ void Bus::afisareDus()
     while(aux != NULL)
     {
 
-        cout<<"   "<<aux->info<<" ";
+        liniarb(" ",Lb);cout<<"   "<<aux->info<<" ";
         for(int i = 0; i< 20 - strlen(aux->info); i++){cout<<"-";}
-        cout<<"["<< aux->timp <<":"<< aux->timpm <<"]";
 
+
+        cout<<"[";
+            if(aux->timp<10){
+                cout<<"0"<<aux->timp;
+            }
+            else{cout<<aux->timp;}
+            cout<<":";
+
+            if(aux->timpm<10){
+                cout<<"0"<<aux->timpm;
+            }
+            else{cout<<aux->timpm;}
+        cout<<"]";
         if(aux->suntAiciDus) {cout << " - [AICI]";}
         cout<<endl;
 
@@ -124,8 +159,8 @@ void Bus::afisareDus()
 
 void Bus::afisareIntors()
 {
-    cout<<"  -------- BUSSUL: "<< this->numeBus <<" -------\n"<<endl;
-    cout<<" Statii INTORS:" <<endl;
+    liniarb(" ",Lb);cout<<"  -------- "<< this->numeBus <<" -------\n"<<endl;
+    liniarb(" ",Lb);cout<<" Statii INTORS:" <<endl;
     node *aux = new node;
     aux = sfarsit;
 
@@ -133,9 +168,20 @@ void Bus::afisareIntors()
     while(aux != NULL)
     {
 
-        cout<<"   "<<aux->info<<" ";
+        liniarb(" ",Lb);cout<<"   "<<aux->info<<" ";
         for(int i = 0; i< 20 - strlen(aux->info); i++){cout<<"-";}
-        cout<<"["<< aux->timp <<":"<< aux->timpm <<"]";
+        cout<<"[";
+            if(aux->timp<10){
+                cout<<"0"<<aux->timpI;
+            }
+            else{cout<<aux->timpI;}
+            cout<<":";
+
+            if(aux->timpmI<10){
+                cout<<"0"<<aux->timpmI;
+            }
+            else{cout<<aux->timpmI;}
+        cout<<"]";
 
         if(aux->suntAiciIntors) {cout << " - [AICI]";}
         cout<<endl;
@@ -193,6 +239,34 @@ void Bus::addLaSpate(char* v ,int t )//////////////////////////aici ai ramas
     nrStatiiCurent++;
 }
 
+void Bus::addLaSpate(string v ,int t )
+{
+    node *aux = new node;
+
+        strcpy(aux->info, v.c_str());
+        //aux->info = v;
+        aux->timp = t;
+
+        aux->next = NULL;
+        if(inceput == NULL)//daca nu avem niciun nod in lista
+        {
+            inceput = aux;
+            sfarsit = aux;
+            aux = NULL;
+        }
+        else //avem nod in lista si il punem la spate
+        {
+            sfarsit->next = aux;
+            aux->prev = sfarsit;
+
+            sfarsit = aux;
+        }
+
+
+    nrStatiiCurent++;
+}
+
+
 bool Bus::searchBus(char *v)
 {
     if(v != NULL)
@@ -244,6 +318,26 @@ void Bus::setTime(int t, int m ,int n ) // t = timp de setat | n = al catelea no
 
 }
 
+void Bus::setTimeI(int t, int m ,int n ) // t = timp de setat | n = al catelea nod sa fie setat
+{
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+        int i = 0;
+
+
+        while( (aux!=NULL) && (i<n) )
+        {
+            aux = aux->next;
+            i++;
+        }
+
+        aux->timpI = t;
+        aux->timpmI = m;
+
+
+}
+
 void Bus::setSuntAiciDus(int p)
 {
     bool ok = false;
@@ -291,4 +385,29 @@ char* Bus::getNume()
 char* Bus::getSofer()
 {
     return this->numeSofer;
+}
+
+bool Bus::cautareStatie(char* statie)
+{
+    if(statie != NULL)
+    {
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( (ok==false) && (aux!=NULL) )
+        {
+            cout<<"Uite";
+            if( strcmp(statie,aux->info) == 0)
+            {
+                ok = true;
+                return ok;
+            }
+            aux = aux->next;
+        }
+
+        return ok;
+    }
+
+
 }

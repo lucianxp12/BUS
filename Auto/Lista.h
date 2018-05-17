@@ -26,6 +26,7 @@ class Lista
         ~Lista();
         friend ostream &operator<<(ostream &, const Lista &);
 
+
         //chestii pt lista simplu inlantuita
         void addLaSpate(char* =NULL, char* =NULL, char* =NULL);
         void afisare();

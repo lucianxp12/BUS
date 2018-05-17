@@ -1,11 +1,13 @@
 #include <iostream>
 #include "Lista.h"
 #include "Bus.h"
+#include "Arbore.h"
 #include "Functii.h"
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
 #include "UserLogged.h"
+
 #define L 10
 
 using namespace std;
@@ -42,7 +44,7 @@ bool userLoggedRight;
 
 
     liniar(" ",L); liniar("-",L); cout<<"  Buna !  ";  liniar("-",L); cout<<endl;
-    liniar(" ",Lf); cout<<"Ora ["<<getTimeHour()<<":"<<getTimeMin()<<"]"<<endl;
+    liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
     cout<<endl;
 
     liniar(" ",L);cout<< "Trebuie sa ne logam !" <<endl;
@@ -71,26 +73,86 @@ bool userLoggedRight;
     {
 
     system("cls");
-
+    int numarBusuri = 4;
+    adaugareBussGeneral(t,0,"E2.txt", "E2" , "Dorian CiMolan");
+    adaugareBussGeneral(t,1,"16.txt", "16", "Pardon Nisipescu");
+    adaugareBussGeneral(t,2,"ETREI.txt", "E3", "Pardon Nisipescu");
+    adaugareBussGeneral(t,3,"9.txt", "9", "Pardon Nisipescu");
     cout<<"Ceva"<<endl;
 
     a.afisare();cout<<a.getNumeUserLogatos();
 
     cout<<"Ceva"<<endl;
 
+    Arbore *A1 = new Arbore();
+
+
+    liniar(" ",L); cout<<"Totul a fost incarcat ! Apasa \"ENTER\" pentru a continua\n\n" <<endl;
+    cin.get();
+    cin.get();
     UserLogged U(a);
     U.afisare();
+    system("cls");
     liniar(" ",L); liniar("-",L); cout<<"  Buna "<<U.getNume()<<" !";   liniar("-",L); cout<<endl;
-    liniar(" ",Lf); cout<<"Ora ["<<getTimeHour()<<":"<<getTimeMin()<<"]"<<endl;
+    liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
     liniar(" ",Lf); cout<<"Autobuzul tau preferat este: "<< U.getFav() <<endl;
+    cout<<endl;
 
-    int numarBusuri = 2;
-    adaugareBussGeneral(t,0,"E2.txt", "E2" , "Dorian CiMolan");
-    adaugareBussGeneral(t,1,"16.txt", "16", "Pardon Nisipescu");
+
+
     char* fav;
     fav = new char[strlen(U.getFav())+1];
     strcpy(fav, U.getFav());
-    cautareDupaBus(t,1,fav);
+
+    cautareAfisareDupaBus(t,4,fav);
+
+
+    cout<<endl;
+    liniar(" ", L);cout<<"Mijloacele de transport disponibile sunt: "<<endl;
+    afisareNumeBusuri(t,numarBusuri);
+
+    adaugareArboreFisiere(A1);
+
+
+
+    string statieCautata;
+
+    int statieOK = 2;
+
+    while(statieOK == 2)
+    {
+
+    liniar(" ", L); cout<<"Introdu statia cautata: ";
+    cin>>statieCautata;
+
+    liniar(" ", L);cout<<"Ati cautat statia:"<<statieCautata<<endl;
+
+    //A1->inordine();
+
+    if(A1->searchInfo(statieCautata))
+    {
+        liniar(" ", L); cout<<"Statia Exista";
+    }
+    else{liniar(" ", L); cout<<"Ai vrut sa scrii: "<< A1->Caut(statieCautata)<<" ?"<<endl;}
+
+    liniar(" ", L); cout<<"1. Da"; liniar(" ", L); cout<<"2. NU"<<endl;
+    liniar(" ", L);cout<<"Raspuns:";
+
+    cin>>statieOK;
+
+    while( statieOK!= 1 && statieOK != 2 )
+    {
+        liniar(" ", L);cout<<"Alege variante 1 sau 2 ! "<<endl;
+        cin>>statieOK;
+    }
+
+    if(statieOK == 1){liniar(" ", L);cout<<" YeY !!"<<endl;}
+    else { liniar(" ", L); cout<< "Of Scuze !"<<endl; }
+
+    }
+
+
+
 
     cout<<endl;
 
