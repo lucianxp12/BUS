@@ -28,7 +28,7 @@ Lista::~Lista()
 
 }
 
-void Lista::addLaSpate(char* v,char* p, char*fav)
+void Lista::addLaSpateForReal(char* v,char* p, char*fav)
 {
     nod *aux = new nod;
 
@@ -63,6 +63,81 @@ void Lista::addLaSpate(char* v,char* p, char*fav)
 
     }
 
+
+}
+
+void Lista::addLaSpate(char* v,char* p, char*fav)
+{
+    nod *aux = new nod;
+    nod *parc = new nod;
+    nod *copie = new nod;
+
+
+    bool gasit;
+
+    if(v != NULL)
+    {
+        if(v != NULL)
+            strcpy(aux->data,v);
+        else strcpy(aux->data,"Inexistent");
+
+        if(p != NULL)
+            strcpy(aux->pass,p);
+        else strcpy(aux->pass,"Inexistent");
+
+        if(p != NULL)
+            strcpy(aux->fav,fav);
+        else strcpy(aux->fav,"Inexistent");
+        aux->next = NULL;
+        if(inceput == NULL)//daca nu avem niciun nod in lista
+        {
+            inceput = aux;
+            sfarsit = aux;
+            aux = NULL;
+        }
+        else //avem nod in lista si il punem la spate
+        {
+            gasit = false;
+            parc = inceput;
+            while( (gasit == false) && ( parc != NULL) )
+            {
+
+                if( strcmp(parc->data, v)>0 )
+                {
+                    //copiem ce e existent in nodul de dupa
+                    strcpy(copie->data,parc->data );
+                    strcpy(copie->pass,parc->pass );
+                    strcpy(copie->fav,parc->fav );
+                    copie->next = parc->next;
+
+                    //punem in existent ce avem de pus
+
+                    strcpy(parc->data, aux->data);
+                    strcpy(parc->pass, aux->pass);
+                    strcpy(parc->fav, aux->fav);
+                    parc->next = copie;
+
+                    gasit = true;
+
+                    if(copie->next == NULL)
+                    {
+                        sfarsit = copie;
+                    }
+                }
+
+                parc = parc->next;
+
+
+            }
+
+            if(gasit == false){
+                sfarsit->next = aux;
+                sfarsit = aux;
+
+            }
+        }
+
+    }
 
 }
 

@@ -5,8 +5,14 @@
 using namespace std;
 UserLogged::UserLogged(Lista& a)
 {
+    this->data = a.getNumeUserLogatos();
+    this->pass = a.getPassUserLogatos();
+    this->fav = a.getFavUserLogatos();
+
+    /*
     if(a.getNumeUserLogatos() != NULL)
     {
+
         this->data = new char[strlen(a.getNumeUserLogatos())+1];
         strcpy(this->data, a.getNumeUserLogatos());
     }
@@ -22,7 +28,7 @@ UserLogged::UserLogged(Lista& a)
         this->fav = new char[strlen(a.getFavUserLogatos())+1];
         strcpy(this->fav, a.getFavUserLogatos());
     }
-
+    */
     this->adminRights = a.getAdminRight();
 
     logged = true;
@@ -30,6 +36,7 @@ UserLogged::UserLogged(Lista& a)
 
 UserLogged::~UserLogged()
 {
+    /*
     if(this->data != NULL)
     {
         delete []this->data;
@@ -46,6 +53,7 @@ UserLogged::~UserLogged()
     {
         delete []this->pass;
     }
+    */
 }
 
 void UserLogged::afisare()
@@ -53,17 +61,17 @@ void UserLogged::afisare()
     cout<<data;
 }
 
-char* UserLogged::getNume()
+string UserLogged::getNume()
 {
     return this->data;
 }
 
-char* UserLogged::getFav()
+string UserLogged::getFav()
 {
     return this->fav;
 }
 
-char* UserLogged::getPass()
+string UserLogged::getPass()
 {
     return this->fav;
 }

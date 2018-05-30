@@ -4,9 +4,9 @@
 #include "Lista.h"
 class UserLogged
 {
-    char* data;
-    char* pass;
-    char* fav;
+    string data;
+    string pass;
+    string fav;
     bool logged;
     bool adminRights;
     Lista b;
@@ -15,9 +15,9 @@ class UserLogged
         UserLogged(Lista&);
         virtual ~UserLogged();
         void afisare();
-        char* getNume();
-        char* getFav();
-        char* getPass();
+        string getNume();
+        string getFav();
+        string getPass();
         bool isAdmin();
 
 

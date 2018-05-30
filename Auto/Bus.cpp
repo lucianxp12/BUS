@@ -2,7 +2,7 @@
 #include <string>
 #include <string.h>
 #include "Bus.h"
-
+#define L 10
 using namespace std;
 
 void liniarb(char *a, int n)
@@ -148,7 +148,7 @@ void Bus::afisareDus()
             }
             else{cout<<aux->timpm;}
         cout<<"]";
-        if(aux->suntAiciDus) {cout << " - [AICI]";}
+        if(aux->suntAiciDus) {cout << " - [AICI]";} if(aux->bilet) {cout << " - Achizitionare Bilet";}
         cout<<endl;
 
 
@@ -183,7 +183,7 @@ void Bus::afisareIntors()
             else{cout<<aux->timpmI;}
         cout<<"]";
 
-        if(aux->suntAiciIntors) {cout << " - [AICI]";}
+        if(aux->suntAiciIntors) {cout << " - [AICI]";} if(aux->bilet) {cout << " - Achizitionare Bilet";}
         cout<<endl;
 
 
@@ -338,6 +338,26 @@ void Bus::setTimeI(int t, int m ,int n ) // t = timp de setat | n = al catelea n
 
 }
 
+void Bus::setBilet(int n ) // n = al catelea nod sa fie setat
+{
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+        int i = 0;
+
+
+        while( (aux!=NULL) && (i<n) )
+        {
+            aux = aux->next;
+            i++;
+        }
+
+        aux->bilet = true;
+
+
+
+}
+
 void Bus::setSuntAiciDus(int p)
 {
     bool ok = false;
@@ -387,6 +407,16 @@ char* Bus::getSofer()
     return this->numeSofer;
 }
 
+char* Bus::getInceput()
+{
+    return this->inceput->info;
+}
+
+char* Bus::getSfarsit()
+{
+    return this->sfarsit->info;
+}
+
 bool Bus::cautareStatie(char* statie)
 {
     if(statie != NULL)
@@ -397,7 +427,7 @@ bool Bus::cautareStatie(char* statie)
 
         while( (ok==false) && (aux!=NULL) )
         {
-            cout<<"Uite";
+
             if( strcmp(statie,aux->info) == 0)
             {
                 ok = true;
@@ -408,6 +438,185 @@ bool Bus::cautareStatie(char* statie)
 
         return ok;
     }
+
+
+}
+
+bool Bus::getStatieTimpDus(char* statie)
+{
+    if(statie != NULL)
+    {
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( (ok==false) && (aux!=NULL) )
+        {
+
+            if( strcmp(statie,aux->info) == 0)
+            {
+                ok = true;
+                cout<<"["<<aux->timp<<":";
+                if(aux->timpm<10){cout<<"0"<<aux->timpm;}
+                else {cout<<aux->timpm;}
+                cout<<"]";
+                return ok;
+            }
+            aux = aux->next;
+        }
+
+        return ok;
+    }
+
+
+}
+
+
+int Bus::getStatieOraTimpDus(char* statie)
+{
+    if(statie != NULL)
+    {
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( (ok==false) && (aux!=NULL) )
+        {
+
+            if( strcmp(statie,aux->info) == 0)
+            {
+                ok = true;
+                return aux->timp;
+            }
+            aux = aux->next;
+        }
+
+
+    }
+
+
+}
+
+int Bus::getStatieMinTimpDus(char* statie)
+{
+    if(statie != NULL)
+    {
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( (ok==false) && (aux!=NULL) )
+        {
+
+            if( strcmp(statie,aux->info) == 0)
+            {
+                ok = true;
+                return aux->timpm;
+            }
+            aux = aux->next;
+        }
+
+
+    }
+
+
+}
+
+int Bus::getStatieOraTimpIntors(char* statie)
+{
+    if(statie != NULL)
+    {
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( (ok==false) && (aux!=NULL) )
+        {
+
+            if( strcmp(statie,aux->info) == 0)
+            {
+                ok = true;
+                return aux->timpI;
+            }
+            aux = aux->next;
+        }
+
+
+    }
+
+
+}
+
+int Bus::getStatieMinTimpIntors(char* statie)
+{
+    if(statie != NULL)
+    {
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( (ok==false) && (aux!=NULL) )
+        {
+
+            if( strcmp(statie,aux->info) == 0)
+            {
+                ok = true;
+                return aux->timpmI;
+            }
+            aux = aux->next;
+        }
+
+
+    }
+
+
+}
+
+bool Bus::getStatieTimpIntors(char* statie)
+{
+    if(statie != NULL)
+    {
+        bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( (ok==false) && (aux!=NULL) )
+        {
+
+            if( strcmp(statie,aux->info) == 0)
+            {
+                ok = true;
+                cout<<"["<<aux->timpI<<":";
+                if(aux->timpmI<10){cout<<"0"<<aux->timpmI;}
+                else {cout<<aux->timpmI;}
+                cout<<"]";
+                return ok;
+            }
+            aux = aux->next;
+        }
+
+        return ok;
+    }
+
+
+}
+
+void Bus::afisareBilet()
+{
+    bool ok = false;
+        node *aux = new node;
+        aux = inceput;
+
+        while( aux!=NULL )
+        {
+            if( aux->bilet)
+            {
+                for(int i=0; i<L; i++ )
+                    cout<<" ";
+                cout<<aux->info<<endl;
+            }
+            aux = aux->next;
+        }
 
 
 }

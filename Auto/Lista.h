@@ -10,7 +10,7 @@ struct nod
 {
     char data[100];
     char pass[100];
-    char fav[10];
+    char fav[100];
     bool logged = false;
     bool adminRights = false;
     nod *next;
@@ -28,6 +28,7 @@ class Lista
 
 
         //chestii pt lista simplu inlantuita
+        void addLaSpateForReal(char* =NULL, char* =NULL, char* =NULL);
         void addLaSpate(char* =NULL, char* =NULL, char* =NULL);
         void afisare();
 

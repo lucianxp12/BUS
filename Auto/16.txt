@@ -3,5 +3,6 @@
 2 Bulevardul Sudului
 2 Spitalul Judetean
 1 Cluj
+1 UVT
 2 Complex Studentesc
 2 Traian Grozavescu

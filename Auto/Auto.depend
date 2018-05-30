@@ -63,25 +63,25 @@
 	<fstream>
 	<stdlib.h>
 
-1526408022 source:h:\bus\auto\bus.cpp
+1527684068 source:h:\bus\auto\bus.cpp
 	<iostream>
 	<string>
 	<string.h>
 	"Bus.h"
 
-1526408034 h:\bus\auto\bus.h
+1527683745 h:\bus\auto\bus.h
 	<iostream>
 
-1525889701 source:h:\bus\auto\lista.cpp
+1527617386 source:h:\bus\auto\lista.cpp
 	<iostream>
 	<string>
 	<string.h>
 	"Lista.h"
 
-1526329847 h:\bus\auto\lista.h
+1527617834 h:\bus\auto\lista.h
 	<iostream>
 
-1526416316 source:h:\bus\auto\main.cpp
+1527690549 source:h:\bus\auto\main.cpp
 	<iostream>
 	"Lista.h"
 	"Bus.h"
@@ -92,7 +92,7 @@
 	<stdlib.h>
 	"UserLogged.h"
 
-1526414341 h:\bus\auto\functii.h
+1527688348 h:\bus\auto\functii.h
 	<iostream>
 	<string>
 	<string.h>
@@ -100,13 +100,14 @@
 	<ctime>
 	<fstream>
 	<stdlib.h>
+	"UserLogged.h"
 
-1525889027 source:h:\bus\auto\userlogged.cpp
+1527509672 source:h:\bus\auto\userlogged.cpp
 	<iostream>
 	"UserLogged.h"
 	<string.h>
 
-1525888990 h:\bus\auto\userlogged.h
+1527509713 h:\bus\auto\userlogged.h
 	"Lista.h"
 
 1525889027 source:e:\bus\auto\userlogged.cpp
@@ -117,7 +118,7 @@
 1525888990 e:\bus\auto\userlogged.h
 	"Lista.h"
 
-1526416305 source:h:\bus\auto\arbore.cpp
+1527672025 source:h:\bus\auto\arbore.cpp
 	"Arbore.h"
 
 1526415440 h:\bus\auto\arbore.h
@@ -186,4 +187,58 @@
 	<iostream>
 	<fstream>
 	<string>
+
+1527458327 source:f:\bus\auto\arbore.cpp
+	"Arbore.h"
+
+1526415440 f:\bus\auto\arbore.h
+	<iostream>
+	<fstream>
+	<string>
+
+1526408022 source:f:\bus\auto\bus.cpp
+	<iostream>
+	<string>
+	<string.h>
+	"Bus.h"
+
+1526408034 f:\bus\auto\bus.h
+	<iostream>
+
+1525889701 source:f:\bus\auto\lista.cpp
+	<iostream>
+	<string>
+	<string.h>
+	"Lista.h"
+
+1526329847 f:\bus\auto\lista.h
+	<iostream>
+
+1527510192 source:f:\bus\auto\main.cpp
+	<iostream>
+	"Lista.h"
+	"Bus.h"
+	"Arbore.h"
+	"Functii.h"
+	<fstream>
+	<string.h>
+	<stdlib.h>
+	"UserLogged.h"
+
+1527505703 f:\bus\auto\functii.h
+	<iostream>
+	<string>
+	<string.h>
+	<random>
+	<ctime>
+	<fstream>
+	<stdlib.h>
+
+1527509713 f:\bus\auto\userlogged.h
+	"Lista.h"
+
+1527509672 source:f:\bus\auto\userlogged.cpp
+	<iostream>
+	"UserLogged.h"
+	<string.h>
 

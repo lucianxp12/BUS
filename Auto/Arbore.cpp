@@ -138,8 +138,21 @@ string Arbore::Caut(string cuvant)
 {
     int mini = 50;
     string miniC = "Salut";
-    Caut(cuvant, root , mini, miniC);
 
+    if(cuvant == "Poli")
+    {
+        miniC = "UVT";
+    }
+    else
+    {
+        Caut(cuvant, root , mini, miniC);
+
+        if(mini > 3)
+        {
+            miniC = "Inexistent";
+        }
+
+    }
     return miniC;
 }
 

@@ -5,7 +5,7 @@
 #include <ctime>
 #include <fstream>
 #include <stdlib.h>
-
+#include "UserLogged.h"
 #define Lf 10
 
 using namespace std;
@@ -23,6 +23,27 @@ void liniar(char *a, int n)
     }
 }
 
+void afisareLogo()
+{
+
+    liniar(" ",Lf); cout<<"  ____      _  _____ _____ "<<endl;
+    liniar(" ",Lf);cout<<" |  _ \\    / \\|_   _|_   _|"<<endl;
+    liniar(" ",Lf);cout<<" | |_) |  / _ \\ | |   | |  "<<endl;
+    liniar(" ",Lf);cout<<" |  _ <  / ___ \\| |   | |  "<<endl;
+    liniar(" ",Lf);cout<<" |_| \\_\\/_/   \\_\\_|   |_|  "<<endl;
+    cout<<endl;
+}
+
+void afisareAsciiBus()
+{
+    liniar(" ",Lf);cout<< "                          __\n";
+    liniar(" ",Lf);cout<<" .-------------------------  |\n";
+    liniar(" ",Lf);cout<<"/| _  .---. .---. .---. .---.|\n";
+    liniar(" ",Lf);cout<<"| ||| |___| |___| |___| |___||\n";
+    liniar(" ",Lf);cout<<"|=|||========================|\n";
+    liniar(" ",Lf);cout<<"[_|||_|(O)\\__________|(O)\\___]==\n" << endl;
+    cout<<endl;
+}
 int getTimeHour()
 {
     time_t currentTime;
@@ -67,6 +88,22 @@ void spuneTimp()
             else{cout<<M;}
         cout<<"]";
 }
+
+void spuneBuna(int ok){
+
+    int H = getTimeHour();
+    cout<<" Buna ";
+    if(H >= 18)cout<<"seara";
+    else if(H >= 12)cout<<"ziua";
+        else cout<<"dimineata";
+
+    if(ok == 0)
+        cout<<"! ";
+    else
+        cout<<", ";
+
+}
+
 char* encriptareDecriptare(char* sir)
 {
     char key = 'K';
@@ -131,8 +168,8 @@ void adaugareTotiUseri(Lista& a, int nr)
 char* loginUserNou(Lista& a,int& nr)
 {
     system("cls");
-
-    liniar(" ",Lf); liniar("-",Lf); cout<<"  Buna !  ";  liniar("-",Lf); cout<<endl;
+    afisareLogo();
+    liniar(" ",Lf); liniar("-",Lf); spuneBuna(0);  liniar("-",Lf); cout<<endl;
     liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
      cout<<endl;
 
@@ -143,11 +180,11 @@ char* loginUserNou(Lista& a,int& nr)
 
 
     do{
-    cout<<"Introdu un user:"; cin>>userName;
+    liniar(" ", Lf);cout<<"Introdu un user:"; cin>>userName;
 
     if( a.SearchUser(userName) == true)
     {
-        cout<<"Numele de utilizator: \"" << userName << "\" este a fost deja ales :( "<<endl;
+    liniar(" ", Lf);cout<<"Numele de utilizator: \"" << userName << "\" este a fost deja ales :( "<<endl;
 
 
     }
@@ -178,7 +215,7 @@ char* loginUserNou(Lista& a,int& nr)
 
         if( (CIFRE > 0) && (MARE > 0) ){ loginOk = true ;}
             else
-            {   cout<<"ATENTIE !!! "<<endl;
+            {   liniar(" ", Lf);cout<<"ATENTIE !!! "<<endl;
                 if (CIFRE < 2) {liniar(" ", Lf); cout<<"Introdu o parola care are cel putin 2 cifre"<<endl; }
                 if (MARE == 0) { liniar(" ", Lf); cout<<"Introdu o parola care are cel putin o litera MARE"<<endl; }
             }
@@ -191,7 +228,7 @@ char* loginUserNou(Lista& a,int& nr)
 
         strcpy(decr, encriptareDecriptare(userPass));
 
-        baza << userName << " " << decr <<endl;
+        baza << userName << " " << decr << " Inexistent\n" << endl;
 
         baza.close();
 
@@ -213,8 +250,8 @@ char* loginUserNou(Lista& a,int& nr)
 char* loginUserExistent(Lista& a)
 {
     system("cls");
-
-    liniar(" ",Lf); liniar("-",Lf); cout<<"  Buna !  ";  liniar("-",Lf); cout<<endl;
+    afisareLogo();
+    liniar(" ",Lf); liniar("-",Lf); spuneBuna(0);  liniar("-",Lf); cout<<endl;
     liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
     cout<<endl;
 
@@ -419,6 +456,7 @@ void adaugareBussGeneral(Bus** t, int Z , char* numeFisier, char* numeAutobuz , 
                 curent.append(" ");
 
             }
+
             nr++;
             t[Z]->addLaSpate(curent,0);
             //cout<< curent<<endl;
@@ -459,7 +497,10 @@ void adaugareBussGeneral(Bus** t, int Z , char* numeFisier, char* numeAutobuz , 
                 HI %=24;
             }
 
-
+            if(i%6 == 0)
+            {
+                t[Z]->setBilet(i);
+            }
             t[Z]->setTimeI(HI,MI, i);
          }
 
@@ -617,13 +658,6 @@ void cautareBus(Bus **t , int n , char* v)
 }
 
 
-char* spunebuna()
-{
-    char* buna;
-    buna = new char[20];
-    strcpy(buna ,"xxx");
-    return buna;
-}
 
 void cautareAfisareDupaBus(Bus **t, int n , char* nume)
 {
@@ -720,7 +754,39 @@ void adaugareArboreFisiere(Arbore *A1)
 
 	f16.close();
 
+    ifstream f9("Depou/9.txt");
 
+	while(f9>>p)
+    {
+        u = "";
+        for(i=0; i< p ;i++)
+        {
+            f9>>z;
+            u.append(z);
+            u.append(" ");
+        }
+        u.erase(u.end()-1);
+        A1->inserare(u);
+    }
+
+	f9.close();
+
+
+    ifstream f3("Depou/ETREI.txt");
+	while(f3>>p)
+    {
+        u = "";
+        for(i=0; i< p ;i++)
+        {
+            f3>>z;
+            u.append(z);
+            u.append(" ");
+        }
+        u.erase(u.end()-1);
+        A1->inserare(u);
+    }
+
+	f3.close();
 
 }
 
@@ -775,6 +841,342 @@ string cautareStatie(string statie, Arbore *A1)
 
 }
 
+void logoTaxi(){
+    liniar(" ",Lf);cout<<"              .----' `-----."<<endl;
+    liniar(" ",Lf);cout<<"             //^^^^;;^^^^^^`\\"<<endl;
+    liniar(" ",Lf);cout<<"     _______//_____||_____()_\\________"<<endl;
+    liniar(" ",Lf);cout<<"    /SPEED   :      :                  `\\"<<endl;
+    liniar(" ",Lf);cout<<"   |>   ____;      ;    TAXI   ____   _<)"<<endl;
+    liniar(" ",Lf);cout<<"  {____/    \\_________________/    \\____}"<<endl;
+    liniar(" ",Lf);cout<<"       \ '' /                 \ '' /"<<endl;
+    liniar(" ",Lf);cout<<"        '--'                   '--'"<<endl;
+}
+
+void vreauTaxi(){
+    logoTaxi();
+    cout<<endl;
+    liniar(" ",Lf); liniar("-",Lf); spuneBuna(0);  liniar("-",Lf); cout<<endl;
+    liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
+     cout<<endl;
+    liniar(" ",Lf + 4); cout<<"Companie"; liniar(" ",10); cout<<"Nr. Telefon"<<endl;
+
+    int taxi;
+
+    liniar(" ",Lf);cout<<"1) Tudo Taxi         (0256) 940"<<endl;
+    liniar(" ",Lf);cout<<"2) Radio Taxi        (0256) 945"<<endl;
+    liniar(" ",Lf);cout<<"3) TAXI TIMISOARA    (0256) 946"<<endl;
+    liniar(" ",Lf);cout<<"4) FAN TAXI          (0256) 946"<<endl;
+
+
+    do{
+    liniar(" ",Lf);cout<<"Ce taxiu doriti ?"<<endl;
+    liniar(" ",Lf);cout<<"Raspuns:";
+    cin>>taxi;
+    cout<<endl;
+    if(taxi < 1 || taxi > 4)
+    {
+        liniar(" ",Lf);cout<< "Va rugam sa introduceti un numar din lista data !"<<endl;
+    }
+    else{
+        cout<<endl;
+        liniar(" ",Lf);cout<<"Aplicatia se va inchide, iar numarul de taxi va fi apelat"<<endl;
+        liniar(" ",Lf);cout<<"La revedere !"<<endl;
+    }
+    }while( taxi < 1 || taxi > 4);
+
+}
+
+bool cautaStatiePrintreBussuri(Bus **t, int n,char* statie)
+{
+
+
+    for(int i=0; i<n; i++)
+    {
+
+        if(t[i]->cautareStatie(statie))
+        {   cout<<endl;
+            liniar(" ",Lf);cout<<"------- "<<t[i]->getNume()<< " -------"<<endl;
+            liniar(" ",Lf + 3);cout<<" dinspre "<<t[i]->getInceput()<< " la "; t[i]->getStatieTimpDus(statie); cout<<endl;
+            liniar(" ",Lf + 3);cout<<" dinspre "<<t[i]->getSfarsit()<< " la "; t[i]->getStatieTimpIntors(statie); cout<<endl;
+        }
+    }
+}
+
+
+void cautaStatieCuDoYouMean(Arbore *A1,Bus **t){
+
+    // cautare statie
+    string statieCautata;
+
+    int statieOK = 2;
+
+    while(statieOK == 2)
+    {
+
+    liniar(" ", Lf); cout<<"Introduceti statia cautata: ";
+    cin>>statieCautata;
+
+    liniar(" ", Lf);cout<<"Ati cautat statia:"<<statieCautata<<endl;
+
+    //A1->inordine();
+
+    if(A1->searchInfo(statieCautata))
+    {
+        liniar(" ", Lf);
+        char* AiVrutSaScrii2;
+        AiVrutSaScrii2 = new char[statieCautata.length()+3];
+        strcpy(AiVrutSaScrii2, statieCautata.c_str());
+
+
+        statieCautata.append(" ");
+        strcpy(AiVrutSaScrii2, statieCautata.c_str());
+        cautaStatiePrintreBussuri(t, 4 ,AiVrutSaScrii2);
+        statieOK = 1;
+
+    }
+    else
+        {
+
+        string AiVrutSaScrii = A1->Caut(statieCautata);
+
+        if( AiVrutSaScrii != "Inexistent")
+            {   liniar(" ", Lf); cout<<"Ai vrut sa scrii: "<< AiVrutSaScrii <<" ?"<<endl;
+
+                liniar(" ", Lf); cout<<"1. Da"; liniar(" ", Lf); cout<<"2. NU"<<endl;
+                liniar(" ", Lf);cout<<"Raspuns:";
+
+                cin>>statieOK;
+
+                while( statieOK!= 1 && statieOK != 2 )
+                {
+                    liniar(" ", Lf);cout<<"Alege variante 1 sau 2 ! "<<endl;
+                    cin>>statieOK;
+                }
+                if(statieOK == 1)
+                {       char* AiVrutSaScrii2;
+                        AiVrutSaScrii2 = new char[AiVrutSaScrii.length()+3];
+                        strcpy(AiVrutSaScrii2, AiVrutSaScrii.c_str());
+                        AiVrutSaScrii.append(" ");
+                        strcpy(AiVrutSaScrii2, AiVrutSaScrii.c_str());
+                        cautaStatiePrintreBussuri(t, 4 ,AiVrutSaScrii2);
+
+                }
+                else { liniar(" ", Lf); cout<< "Of Scuze !"<<endl; }
+
+            }
+            else{
+                liniar(" ", Lf); cout<<"Statia cautata NU exista ! "<<endl;
+            }
+        }
+
+    }
+
+    cout<<endl;
+
+    }
+
+void afisareBilet(Bus **t, int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        t[i]->afisareBilet();
+    }
+}
+
+void spuneTot(UserLogged&U)
+{
+    afisareAsciiBus();
+    liniar(" ",Lf); liniar("-",Lf); cout<<"  Buna "<<U.getNume()<<" !";   liniar("-",Lf); cout<<endl;
+    liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
+}
+
+
+string CautaStatie(Arbore *A1,Bus **t)
+{
+    // cautare statie
+    string statieCautata;
+
+    int statieOK = 2;
+
+    while(statieOK == 2)
+    {
+
+    liniar(" ", Lf); cout<<"Introduceti statia ";
+    cin>>statieCautata;
+
+    liniar(" ", Lf);cout<<"Ati cautat statia:"<<statieCautata<<endl;
+
+    //A1->inordine();
+
+    if(A1->searchInfo(statieCautata))
+    {
+        statieCautata.append(" ");
+
+
+        statieOK = 1;
+        return statieCautata;
+    }
+    else
+        {
+
+        string AiVrutSaScrii = A1->Caut(statieCautata);
+
+        if( AiVrutSaScrii != "Inexistent")
+            {   liniar(" ", Lf); cout<<"Ai vrut sa scrii: "<< AiVrutSaScrii <<" ?"<<endl;
+
+                liniar(" ", Lf); cout<<"1. Da"; liniar(" ", Lf); cout<<"2. NU"<<endl;
+                liniar(" ", Lf);cout<<"Raspuns:";
+
+                cin>>statieOK;
+
+                while( statieOK!= 1 && statieOK != 2 )
+                {
+                    liniar(" ", Lf);cout<<"Alege variante 1 sau 2 ! "<<endl;
+                    cin>>statieOK;
+                }
+                if(statieOK == 1)
+                {
+                        AiVrutSaScrii.append(" ");
+                        return AiVrutSaScrii;
+
+
+                }
+                else { liniar(" ", Lf); cout<< "Of Scuze !"<<endl; }
+
+            }
+            else{
+                liniar(" ", Lf); cout<<"Statia cautata NU exista ! "<<endl;
+            }
+        }
+
+    }
+
+}
+
+
+
+void busOptim(Arbore *A1,Bus **t, int n){
+
+    bool megaOk = false;
+
+    bool OKX;
+    bool OKY;
+
+    int pozX;
+    int pozY;
+
+    int MinOra = 25;
+    int MinMin = 62;
+    char MinnumeStatie[100];
+    char MinnumeBus[100];
+    int pozMin;
+   strcpy( MinnumeStatie, "Inexistent");
+
+    int tempOraDus;
+    int tempMinDus;
+
+    int tempOraIntors;
+    int tempMinIntors;
+
+    string stringX;
+    string stringY;
+
+    char* charX;
+    char* charY;
+
+    liniar(" ", Lf);cout<<" -- Statia unde va aflati --"<<endl;
+    stringX = CautaStatie(A1,t);
+    charX = new char[stringX.length()+2];
+    strcpy(charX, stringX.c_str());
+
+
+
+    liniar(" ", Lf);cout<<" -- Statia unde doriti sa ajungeti --"<<endl;
+    stringY = CautaStatie(A1,t);
+
+    charY = new char[stringY.length()+2];
+    strcpy(charY, stringY.c_str());
+
+
+
+    for(int i=0; i<n; i++)
+    {
+
+        if(t[i]->cautareStatie(charX))
+        {
+            pozX = i;
+
+
+            /*
+            liniar(" ",Lf);cout<<"------- "<<t[i]->getNume()<< " -------"<<endl;
+            liniar(" ",Lf + 3);cout<<" dinspre "<<t[i]->getInceput()<< " la "; t[i]->getStatieTimpDus(statie); cout<<endl;
+            liniar(" ",Lf + 3);cout<<" dinspre "<<t[i]->getSfarsit()<< " la "; t[i]->getStatieTimpIntors(statie); cout<<endl;
+            */
+        }
+
+
+        if(t[i]->cautareStatie(charY))
+        {
+            pozY = i;
+
+            /*
+            liniar(" ",Lf);cout<<"------- "<<t[i]->getNume()<< " -------"<<endl;
+            liniar(" ",Lf + 3);cout<<" dinspre "<<t[i]->getInceput()<< " la "; t[i]->getStatieTimpDus(statie); cout<<endl;
+            liniar(" ",Lf + 3);cout<<" dinspre "<<t[i]->getSfarsit()<< " la "; t[i]->getStatieTimpIntors(statie); cout<<endl;
+            */
+        }
+
+        if(pozY == pozX)
+        {
+            tempOraDus = t[i]->getStatieOraTimpDus(charY);
+            tempMinDus = t[i]->getStatieMinTimpDus(charY);
+
+                if(tempMinDus < MinMin)
+                {
+                    MinOra = tempOraDus;
+                    MinMin = tempMinDus;
+
+                    pozMin = pozY;
+
+                }
+
+
+            megaOk = true;
+
+        }
+    }
+
+    if(megaOk)
+    {
+        liniar(" ", Lf);cout<<"Ar trebui sa iei buss-ul: "<<t[pozMin]->getNume()<<endl;
+
+            int tempOra1 = t[pozMin]->getStatieOraTimpDus(charX);
+            int tempMin1 = t[pozMin]->getStatieMinTimpDus(charX);
+
+            int tempOra2 = t[pozMin]->getStatieOraTimpDus(charY);
+            int tempMin2 = t[pozMin]->getStatieMinTimpDus(charY);
+
+            if(tempOra1 > tempOra2)
+            {
+                liniar(" ", Lf);cout<< "Din statia " << charX << " la ora "; t[pozMin]->getStatieTimpIntors(charX) ; cout<<endl;
+                liniar(" ", Lf);cout<< "Vei ajunge in statia: " << charY << " la ora "; t[pozMin]->getStatieTimpIntors(charY); cout<<endl ;
+            }
+            else if(tempMin1 > tempMin2)
+            {
+                liniar(" ", Lf);cout<< "Din statia " << charX << " la ora "; t[pozMin]->getStatieTimpIntors(charX) ; cout<<endl;
+                liniar(" ", Lf);cout<< "Vei ajunge in statia: " << charY << " la ora "; t[pozMin]->getStatieTimpIntors(charY); cout<<endl ;
+            }
+            else
+            {
+                liniar(" ", Lf);cout<< "Din statia " << charX << " la ora "; t[pozMin]->getStatieTimpDus(charX); ; cout<<endl;
+                liniar(" ", Lf);cout<< "Vei ajunge in statia: " << charY << " la ora "; t[pozMin]->getStatieTimpDus(charY); cout<<endl ;
+            }
+
+
+    }
+    else{liniar(" ", Lf);cout<<"Nu exista un mijloc de transport care sa contina ambele statii"<<endl;}
+
+}
 
 /*
 

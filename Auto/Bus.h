@@ -8,15 +8,16 @@ using namespace std;
 struct node
 {
     char info[4000];
-    int timp;
-    int timpm;
+    int timp; //timp dus ore
+    int timpm; //timp dus minute
 
-    int timpI;
-    int timpmI;
+    int timpI; //timp intors ore
+    int timpmI; //timo intors minute
 
 
     bool suntAiciDus;
     bool suntAiciIntors;
+    bool bilet;
     node *next;
     node *prev;
 };
@@ -40,10 +41,22 @@ class Bus
         char* getSofer();
         void setTime(int =0, int =0 , int =0);
         void setTimeI(int =0, int =0 , int =0);
+        void setBilet(int =0);
         int getNrStatiiCuren() const;
         void setSuntAiciIntors(int =0);
         void setSuntAiciDus(int =0);
         bool cautareStatie(char* =NULL);
+        void afisareBilet();
+        char* getInceput();
+        char* getSfarsit();
+        bool getStatieTimpDus(char* =NULL);
+        bool getStatieTimpIntors(char* =NULL);
+
+        int getStatieOraTimpDus(char* =NULL);
+        int getStatieMinTimpDus(char* =NULL);
+
+        int getStatieOraTimpIntors(char* =NULL);
+        int getStatieMinTimpIntors(char* =NULL);
 
 
 //------pt lista dubla

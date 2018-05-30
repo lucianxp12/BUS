@@ -39,18 +39,31 @@ bool userLoggedRight;
 
     adaugareTotiUseri(a, nr);
 
+
+//Loading Bussess
+
+    int numarBusuri = 4;
+    adaugareBussGeneral(t,0,"E2.txt", "E2" , "Dorian CiMolan");
+    adaugareBussGeneral(t,1,"16.txt", "16", "Pardon Nisipescu");
+    adaugareBussGeneral(t,2,"ETREI.txt", "E3", "Pardon Nisipescu");
+    adaugareBussGeneral(t,3,"9.txt", "9", "Pardon Bisipescu");
+    system("cls");
 // meniu
+
+
     int alegere = 0;
 
+    afisareLogo();
 
-    liniar(" ",L); liniar("-",L); cout<<"  Buna !  ";  liniar("-",L); cout<<endl;
-    liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
+    liniar(" ",L); liniar("-",L); spuneBuna(0);  liniar("-",L); cout<<endl;
+    liniar(" ",Lf); cout<<"Ora: "; spuneTimp(); cout<<endl;
     cout<<endl;
 
     liniar(" ",L);cout<< "Trebuie sa ne logam !" <<endl;
     liniar(" ",L);cout<<"1. Sunt utilizator existent "<<endl;
     liniar(" ",L);cout<<"2. Vreau sa imi fac cont "<<endl;
-    liniar(" ",L);cout<<"3. Iesire "<<endl;
+    liniar(" ",L);cout<<"3. Cheama un taxi "<<endl;
+    liniar(" ",L);cout<<"4. Iesire "<<endl;
 
     do{
     if((alegere != 1) && (alegere != 2)){ liniar(" ",L);cout<< "Rasuns: "; cin>>alegere; }
@@ -64,20 +77,17 @@ bool userLoggedRight;
 
     else if(alegere == 2){userLogged = loginUserNou(a, nr);}
     else if(alegere == 0){ }
-    else if(alegere == 3){liniar(" ",L); cout<<"La revedere !!";}
+    else if(alegere == 3){ system("cls"); vreauTaxi();}
+    else if(alegere == 4){cout<<endl; liniar(" ",L); cout<<"Aplicatia se va inchide"<<endl; liniar(" ",L); cout<<"La revedere !!\n";}
         else{liniar(" ",L); cout<<"Te rugam sa alegi un raspuns valid"<<endl;}
 
-    }while ( (alegere != 1) && (alegere != 2) && (alegere != 3));
+    }while ( (alegere != 1) && (alegere != 2) && (alegere != 4) && (alegere != 3));
 
-    if(alegere != 3)
+    if(alegere != 4 && alegere != 3)
     {
 
     system("cls");
-    int numarBusuri = 4;
-    adaugareBussGeneral(t,0,"E2.txt", "E2" , "Dorian CiMolan");
-    adaugareBussGeneral(t,1,"16.txt", "16", "Pardon Nisipescu");
-    adaugareBussGeneral(t,2,"ETREI.txt", "E3", "Pardon Nisipescu");
-    adaugareBussGeneral(t,3,"9.txt", "9", "Pardon Nisipescu");
+
     cout<<"Ceva"<<endl;
 
     a.afisare();cout<<a.getNumeUserLogatos();
@@ -90,72 +100,168 @@ bool userLoggedRight;
     liniar(" ",L); cout<<"Totul a fost incarcat ! Apasa \"ENTER\" pentru a continua\n\n" <<endl;
     cin.get();
     cin.get();
+bool okInchidere = false;
+do{
     UserLogged U(a);
     U.afisare();
     system("cls");
+    afisareAsciiBus();
     liniar(" ",L); liniar("-",L); cout<<"  Buna "<<U.getNume()<<" !";   liniar("-",L); cout<<endl;
     liniar(" ",Lf); cout<<"Ora"; spuneTimp(); cout<<endl;
-    liniar(" ",Lf); cout<<"Autobuzul tau preferat este: "<< U.getFav() <<endl;
-    cout<<endl;
+
+    string busFavorit = U.getFav();
+    bool setatBusFavorit = true;
+    if( busFavorit == "Inexistent" || busFavorit == "NU")
+    {
+        int selectFav;
+        liniar(" ",L);cout<<"Se pare ca nu ti-ai adaugat un mijloc de transport favorit."<<endl;
+        liniar(" ",L);cout<<"Vrei sa il adaugi acum ?"<<endl;
+        liniar(" ",L);cout<<"1) Da        2) NU"<<endl;
+
+        do{
+            liniar(" ",L);cout<<"Raspuns: "; cin>>selectFav;cout<<endl;
+
+            if( selectFav != 1 && selectFav != 2){
+                cout<<"Te rugam sa introduci un raspuns valid"<<endl;
+            }
+
+        }while( selectFav != 1 && selectFav != 2);
+
+
+        if(selectFav == 1)
+        {
+            liniar(" ",L);cout<<"Care este statie ta favorita ?"<<endl;
+        }
+        else{
+            liniar(" ",L);cout<<"Vom seta statia favorita data viitoate."<<endl;
+            setatBusFavorit = false;
+        }
 
 
 
-    char* fav;
-    fav = new char[strlen(U.getFav())+1];
-    strcpy(fav, U.getFav());
 
-    cautareAfisareDupaBus(t,4,fav);
+    }
+
+    if( setatBusFavorit == true)
+    {
+        liniar(" ",Lf); cout<<"Autobuzul tau preferat este: "<< U.getFav() <<endl;
+        cout<<endl;
 
 
-    cout<<endl;
-    liniar(" ", L);cout<<"Mijloacele de transport disponibile sunt: "<<endl;
-    afisareNumeBusuri(t,numarBusuri);
+
+        string fav;
+        fav =U.getFav();
+
+
+        char *favc = new char[fav.length() + 1];
+        strcpy(favc, fav.c_str());
+
+        cautareAfisareDupaBus(t,4,favc);
+        cout<<endl;
+    }
+
 
     adaugareArboreFisiere(A1);
 
 
+    int alegereUserLogat;
 
-    string statieCautata;
 
-    int statieOK = 2;
+    liniar(" ",L);cout<<"1) Alege un mijloc de transport"<<endl;
+    liniar(" ",L);cout<<"2) Cauta o statie"<<endl;
+    liniar(" ",L);cout<<"3) Sunt la statia X si vreau sa ajung la Y "<<endl;
+    liniar(" ",L);cout<<"4) Case de Bilete"<<endl;
+    liniar(" ",L);cout<<"5) Comanda un taxi"<<endl;
+    liniar(" ",L);cout<<"6) Iesire"<<endl;
 
-    while(statieOK == 2)
+    do{
+        liniar(" ", Lf);cout<<"Raspuns:";cin>>alegereUserLogat;
+
+        if( alegereUserLogat<1 || alegereUserLogat>6)
+        {
+            cout<<"Te rugam sa alegi un raspuns valid"<<endl;
+        }
+    }while(alegereUserLogat<1 || alegereUserLogat>6);
+
+    switch(alegereUserLogat)
     {
+        case(1):{
+            system("cls");
+            spuneTot(U);
+            string alegereUnBus;
+            liniar(" ",L); cout<<"Ne dorim sa stim ruta unui mijloc de transport "<<endl;
 
-    liniar(" ", L); cout<<"Introdu statia cautata: ";
-    cin>>statieCautata;
+            liniar(" ",L);cout<<"Alege un mijloc de transport "<<endl;
+            liniar(" ", L);cout<<"Mijloacele de transport disponibile sunt: "<<endl;
+            afisareNumeBusuri(t,numarBusuri);
 
-    liniar(" ", L);cout<<"Ati cautat statia:"<<statieCautata<<endl;
 
-    //A1->inordine();
+            bool alegereUnBusBool;
+            do{
+                liniar(" ",L);cout<<"Introduceti numele mijlocului de transport: ";
+                cin>>alegereUnBus;
+                char *alegereUnBus2 = new char[alegereUnBus.length() + 1];
+                strcpy(alegereUnBus2, alegereUnBus.c_str());
+                alegereUnBusBool = cautareDupaBus(t,4,alegereUnBus2);
+                if( alegereUnBusBool )
+                    {
+                        system("cls");
+                        spuneTot(U);
+                        cautareAfisareDupaBus(t,4,alegereUnBus2);
+                    }
+                else
+                    {
+                        liniar(" ",L);cout<<alegereUnBus<<" nu exista !"<<endl;
+                    }
+                }while(alegereUnBusBool == false);
+            break;
+            }
+        case(2):{
+            system("cls");
+            spuneTot(U);
+            cout<<endl;
+            liniar(" ",L); cout<<"Ne aflam la o statie si ne dorim sa stim ce mijloace de "<<endl;
+            liniar(" ",L); cout<<"transport vin in statia in care ne aflam"<<endl;
+            cautaStatieCuDoYouMean(A1,t);
+            break;
+            }
+        case(3):{
+            system("cls");
+            cout<<endl;
+            spuneTot(U);
+            liniar(" ",L);cout<<"--- Sunt la statia X si vreau sa ajung la Y ---"<<endl;
+            busOptim(A1,t,4);
 
-    if(A1->searchInfo(statieCautata))
-    {
-        liniar(" ", L); cout<<"Statia Exista";
+            break;
+            }
+        case(4):{
+            system("cls");
+            cout<<endl;
+            spuneTot(U);
+            liniar(" ",L);cout<<"--- Casele de bilete RATT disponibile --- \n"<<endl;
+
+            afisareBilet(t,4);
+            break;
+            }
+        case(5):{
+            system("cls");
+            vreauTaxi();
+            break;
+            }
+        case(6):{
+            liniar(" ",L);cout<<"Aplicatia se va inchide !"<<endl;
+            liniar(" ",L);cout<<"La revedere !"<<endl;
+            okInchidere = true;
+            break;
+            }
     }
-    else{liniar(" ", L); cout<<"Ai vrut sa scrii: "<< A1->Caut(statieCautata)<<" ?"<<endl;}
-
-    liniar(" ", L); cout<<"1. Da"; liniar(" ", L); cout<<"2. NU"<<endl;
-    liniar(" ", L);cout<<"Raspuns:";
-
-    cin>>statieOK;
-
-    while( statieOK!= 1 && statieOK != 2 )
-    {
-        liniar(" ", L);cout<<"Alege variante 1 sau 2 ! "<<endl;
-        cin>>statieOK;
-    }
-
-    if(statieOK == 1){liniar(" ", L);cout<<" YeY !!"<<endl;}
-    else { liniar(" ", L); cout<< "Of Scuze !"<<endl; }
-
-    }
 
 
 
 
-    cout<<endl;
-
+cin.get();
+    cin.get();
+}while(okInchidere == false);
     }
 
 
@@ -180,9 +286,6 @@ bool userLoggedRight;
 
 //---------- EXPERIMENTS (curiosity killed the cat ) -------------
 
-char* cap;
-cap = new char[21];
-cap = spunebuna();
 
 /*
 cout<<"Wtf:/?:"<<endl;
@@ -193,7 +296,6 @@ cout<<cap<<endl;
     //op.addLaSpate("Luci","cmfCmz");
     //op.addLaSpate("Alex");
     op.addLaFata("Catalina","vorbareata400");
-    op.addLaFata("Oana","BebeleMeu");
     //op.addLaPoz(400,"Nu vreau", "Shumudica");
     //op.addLaPoz(2,"DobreDobrescu","MustarulEViataMea");
 
@@ -212,4 +314,7 @@ cout<<cap<<endl;
 
     cout<<endl;
     */
+
+    cin.get();
+    cin.get();
 }

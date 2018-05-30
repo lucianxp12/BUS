@@ -4,4 +4,5 @@
 2 Spitalul Judetean
 1 Cluj
 2 Complex Studentesc
+1 UVT
 2 Traian Grozavescu
